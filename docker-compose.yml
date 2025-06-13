@@ -1,0 +1,27 @@
+services:
+  app:
+    container_name: cafe-online-crud
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+    ports:
+      - "8080:80"
+  
+  db:
+    image: mysql
+    container_name: cafe-online-crud-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cafe_online_db
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
