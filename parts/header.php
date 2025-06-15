@@ -1,3 +1,9 @@
+<?php 
+   // подключение необходимых файлов
+    require_once($_SERVER["DOCUMENT_ROOT"]."/src/categories.php");
+    // получение категорий для вывода в шапке
+    $categories = selectAllCategories();
+?>
 
 <header>
     <a href="/">
@@ -22,11 +28,13 @@
     <nav>
          <ul>
             <li><a href="./../pages/cafe.php">Меню</a></li>
-            <li><a href="#">Пицца</a></li>
-            <li><a href="#">Бургер</a></li>
-            <li><a href="#">Шаурма</a></li>
-            <li><a href="#">Салаты</a></li>
-            <li><a href="#">Напитки</a></li>
+            <?php foreach ($categories as $category): ?>
+                    <li>
+                        <a href="/pages/cafe.php?category=<?= $category->id ?>">
+                            <?= $category->title ?>
+                        </a>
+                    </li>
+            <?php endforeach; ?>
         </ul>
     </nav>       
 </header>
