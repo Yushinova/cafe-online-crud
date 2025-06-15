@@ -52,7 +52,7 @@ $dishes = selectAllByParams($categoryId, $page, $limit);
           <?php foreach ($dishes as $dish): ?>
             <div class="item">
                 <div class="image-div">
-                    <img class="image-img" src="./../resource/images/burger.jpg" alt="image">
+                    <img class="image-img" src="./../resource/images/<?=$dish->image?>" alt="image">
                 </div>
                 <h3><?=$dish->title?></h3>
                 <span><?=$dish->description ?></span>
